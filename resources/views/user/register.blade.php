@@ -4,7 +4,7 @@
     <div class="h-screen flex justify-center">
         <div class="self-center h-4/6 w-1/4 flex flex-col mb-12">
             <h1 class="text-center text-white font-bold text-3xl mt-4">Register</h1>
-            <form action="/register" method="POST" class="flex flex-col self-center w-full font-serif mt-6">
+            <form action="/register" method="POST" class="flex flex-col self-center w-full font-serif mt-6" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-6">
@@ -28,6 +28,14 @@
                     <label for="password" class="text-white text-2xl">Enter your password:</label>
                     <input type="password" id="password" name="password" class="w-full h-8 bg-transparent border-2 rounded pl-2 text-white" autocomplete="off">
                     @error('password')
+                        <p class='text-red-400'>{{$message}}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-6">
+                    <label for="profile_picture">Upload an image for your profile picture:</label>
+                    <input type="file" name="profile_picture" id="profile_picture">
+                    @error('profile_picture')
                         <p class='text-red-400'>{{$message}}</p>
                     @enderror
                 </div>

@@ -13,14 +13,23 @@
 
         @auth
             <div class="w-1/3 flex justify-center gap-4 self-center">
-                <p class="self-center">Welcome, {{auth()->user()->name}}</p>
-                <i class='bx bxs-user text-white self-center hover:cursor-pointer'></i>
-                <button class="h-12 w-1/4 border-solid border-2 rounded text-xl hover:bg-neutral-700"><a href="/logout">Logout</a></button>
+                <div class="border-2 rounded-full h-12 w-12 overflow-hidden">
+
+                    <a href="/user/manage-profile">
+                        <img
+                            class="h-full w-full rounded-full"
+                            src="{{auth()->user()->profile_picture ? asset('storage/' . auth()->user()->profile_picture) : asset('website_images/default-profile-picture.png')}}" 
+                            alt="User Profile Picture"
+                        >
+                    </a>
+                </div>
+                <button class="ml-4 h-12 w-1/4 border-solid border-2 rounded text-xl hover:bg-neutral-700"><a class="inline-block w-full h-full flex justify-center items-center" href="/logout">Logout</a></button>
             </div>
         @else
             <div class="w-1/3 flex justify-center gap-4 self-center">
-                <button class="h-12 w-1/4 border-solid border-2 rounded text-xl hover:bg-neutral-700"><a href="/login">Login</a></button>
-                <button class="h-12 w-1/4 border-solid border-2 rounded text-xl hover:bg-neutral-700"><a href="/register">Register</a></button>
+                <button class="h-12 w-1/4 border-solid border-2 rounded text-xl hover:bg-neutral-700"><a class="inline-block w-full h-full flex justify-center items-center" href="/login">Login</a></button> 
+                <!-- Not a fan of the flex anchor tag just so then I can center a text... !-->
+                <button class="h-12 w-1/4 border-solid border-2 rounded text-xl hover:bg-neutral-700"><a class="inline-block w-full h-full flex justify-center items-center"  href="/register">Register</a></button>
             </div>
         @endauth
     </div>

@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
-{
+class UserController extends Controller{
 
     // Redirects to the register page
     public function register() {
@@ -18,15 +17,28 @@ class UserController extends Controller
         return view('user.login');
     }
 
+    // Redirects to the manage profile page
+    public function manage_profile(Request $request) {
+        return view('user.manage_profile', [
+            'user' => auth()->user()
+        ]);
+    }
+
     // Adds a new user/row to the users database
     public function store(Request $request) {
         $data = $request->validate([
             'name' => ['required', 'unique:users', 'min:3', 'max:25'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8', 'max:24']
+            'password' => ['required', 'min:8', 'max:24'],
+            'profile_picture' => ['mimes:jpeg,png', 'max:5120']
         ]);
 
         $data['password'] = bcrypt($data['password']);
+
+        if($request->hasFile('profile_picture')){
+            // We store profile pictures in: /storage/profile_pictures
+            $data['profile_picture'] = $request->file('profile_picture')->store('profile_pictures', 'public');
+        }
 
         $user = User::create($data);
 

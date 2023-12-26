@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\RedirectIfAuthenticated;
-use Illuminate\Auth\Middleware\Authenticate;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +20,15 @@ Route::get('/', function () {
     return view('homepage');
 });
 
-Route::get('/register', [UserController::class, 'register']);
-Route::post('/register', [UserController::class, 'store']);
+Route::middleware(Authenticate::class)->group(function() {
+    Route::get('/logout', [UserController::class, 'logout']);
+    Route::get('/user/manage-profile', [UserController::class, 'manage_profile']);
+});
 
-Route::get('/login', [UserController::class, 'login']);
-Route::post('/login', [UserController::class, 'attemptLogin']);
+Route::middleware(RedirectIfAuthenticated::class)->group(function() {
+    Route::get('/register', [UserController::class, 'register']);
+    Route::post('/register', [UserController::class, 'store']);
 
-Route::get('/logout', [UserController::class, 'logout']);
+    Route::get('/login', [UserController::class, 'login'])->name('user.login');
+    Route::post('/login', [UserController::class, 'attemptLogin']);
+});

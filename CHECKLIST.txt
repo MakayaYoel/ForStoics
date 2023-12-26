@@ -1,4 +1,5 @@
 - Users are able to login and logout [DEC 25th, DONE]
+- Users are able to change their profile picture
 - Users are able to create blogs
 - Main blog page, has sections such as (top blogs of the month, recent blogs, etc.)
 - Blogs or Posts have their own view, like, dislike count
