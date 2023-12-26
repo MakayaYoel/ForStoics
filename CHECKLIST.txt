@@ -1,0 +1,9 @@
+- Users are able to login and logout [DEC 25th, DONE]
+- Users are able to create blogs
+- Main blog page, has sections such as (top blogs of the month, recent blogs, etc.)
+- Blogs or Posts have their own view, like, dislike count
+- Blogs or Posts have their own comments
+- Administrators are able to ban users
+- Administrators are able to delete other users' posts
+- Leveling system
+- Messaging system (if possible)
