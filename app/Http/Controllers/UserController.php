@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller{
 
@@ -76,5 +77,22 @@ class UserController extends Controller{
         session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    // Changes the user's profile picture
+    public function changeProfilePicture(Request $request) {
+        $data = $request->validate([
+            'profile_picture' => ['mimes:jpeg,png', 'max:5120']
+        ]);
+
+        if($request->user()->profile_picture){
+            Storage::disk('public')->delete($request->user()->profile_picture);
+        }            
+
+        $data['profile_picture'] = $request->hasFile('profile_picture') ? $request->file('profile_picture')->store('profile_pictures', 'public') : null;
+
+        $request->user()->update($data);
+
+        return redirect('/user/manage-profile');
     }
 }
