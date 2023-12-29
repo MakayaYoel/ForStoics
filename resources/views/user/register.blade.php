@@ -9,7 +9,7 @@
 
                 <div class="mb-6">
                     <label for="name" class="text-white text-2xl">Enter your username:</label>
-                    <input type="text" id="name" name="name" class="w-full h-8 bg-transparent border-2 rounded pl-2 text-white" autocomplete="off" value="{{old('username')}}">
+                    <input type="text" id="name" name="name" class="w-full h-8 bg-transparent border-2 rounded pl-2 text-white" autocomplete="off" value="{{old('name')}}">
                     @error('name')
                         <p class='text-red-400'>{{$message}}</p>
                     @enderror
@@ -33,8 +33,8 @@
                 </div>
 
                 <div class="mb-6">
-                    <label for="profile_picture">Upload an image for your profile picture:</label>
-                    <input type="file" name="profile_picture" id="profile_picture">
+                    <label class="text-white text-xl" for="profile_picture">Upload an image for your profile picture (optional):</label>
+                    <input class="text-white" type="file" name="profile_picture" id="profile_picture">
                     @error('profile_picture')
                         <p class='text-red-400'>{{$message}}</p>
                     @enderror
