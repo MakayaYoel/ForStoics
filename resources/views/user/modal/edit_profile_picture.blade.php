@@ -18,7 +18,7 @@
                 @enderror
 
                 <div class="mt-4">
-                    <button class="bg-red-500 w-16 h-8 rounded text-white hover:cursor-pointer" onclick="closeEditProfilePictureModal()">Close</button>
+                    <button type="button" class="bg-red-500 w-16 h-8 rounded text-white hover:cursor-pointer" onclick="closeEditProfilePictureModal()">Close</button>
                     <input class="bg-green-600 w-16 h-8 rounded text-white hover:cursor-pointer" type="submit" value="Submit">
                 </div>
             </form>
