@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <div class="main__container h-full flex justify-between px-8 font-serif">
+    <div class="main__container flex justify-between px-8 font-serif" style="height: calc(100vh - 90px)">
         <img 
             class="h-4/5 self-center"
             src="{{asset('website_images/greek_statue.png')}}" alt=""

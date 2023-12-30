@@ -5,7 +5,7 @@
         <div class="w-1/3 flex justify-center self-center">
             <ul class="flex gap-8">
                 <li><a href="/">Home</a></li>
-                <li><a href="#">Blogs</a></li>
+                <li><a href="/posts">Blogs</a></li>
                 <li><a href="#">Feeds</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
