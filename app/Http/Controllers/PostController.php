@@ -51,24 +51,34 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit(Post $post){
+        if(auth()->user()->id !== $post->user->id) abort(403, 'Unauthorized Action');
+
+        return view('posts.edit', [
+            'post' => $post
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, Post $post){
+        $data = $request->validate([
+            'title' => ['required', 'min:5', 'max:24'],
+            'content' => ['required', 'min:5', 'max:3000'] 
+        ]);
+
+        $post->update($data);
+
+        return redirect("/posts/{$post->id}");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(Post $post){
+        $post->delete();
+
+        return redirect('/');
     }
 }
