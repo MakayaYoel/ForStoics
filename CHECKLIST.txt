@@ -1,7 +1,7 @@
 - Users are able to login and logout [DEC 25th, DONE]
 - Users are able to change their profile picture [Dec 27th, DONE]
 - Users are able to create blog posts [DEC 28th, DONE]
-- Users are able to edit and delete their posts
+- Users are able to edit and delete their posts [DEC 11th, DONE]
 - Ranking/XP system
 - Main blog page, has sections such as (top blogs of the month, recent blogs, etc.)
 - Blogs or Posts have their own view, like, dislike count

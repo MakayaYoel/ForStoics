@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\RoleTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
@@ -10,6 +11,9 @@ use Orchid\Platform\Models\User as Authenticatable;
 
 class User extends Authenticatable
 {
+
+    use RoleTrait;
+
     /**
      * The attributes that are mass assignable.
      *
