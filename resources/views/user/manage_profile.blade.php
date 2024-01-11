@@ -17,10 +17,12 @@
             <h1 class="text-white text-4xl font-semibold">{{auth()->user()->name}}</h1>
             <div class="flex gap-1">
                 <p class="text-gray-500"><span class="inline-block bg-red-500 w-max px-4 h-6 flex justify-center items-center rounded-full font-bold text-white">✦ Admin</span></p>
-                <p class="text-gray-500"><span class="inline-block bg-purple-600 w-max px-4 h-6 flex justify-center items-center rounded-full font-bold text-white">✦ Stoic Master</span></p>
+                <p class="text-gray-500"><span class="inline-block bg-purple-500 w-max px-4 h-6 flex justify-center items-center rounded-full font-bold text-white">✦ Stoic Master</span></p>
             </div>
             <div class="relative w-96 h-8 bg-neutral-500 rounded-full">
-                <div class="h-full w-1/4 bg-lime-500 rounded-tl-full rounded-bl-full"></div>
+                <div class="relative h-full w-1/4 bg-lime-500 rounded-tl-full rounded-bl-full cursor-pointer group">
+                    <div class="hidden rounded-sm absolute top-10 w-full bg-black/50 text-xs text-white text-center group-hover:block">You are currently at 8,000xp</div>
+                </div>
                 @for ($i = 1; $i < 4; $i++)
                     <div class="absolute w-0.5 h-8 bg-black bottom-0" style="left:{{25 * $i}}%"></div>
                 @endfor
