@@ -15,9 +15,15 @@
         </div>
         <div class="self-center flex flex-col gap-2">
             <h1 class="text-white text-4xl font-semibold">{{auth()->user()->name}}</h1>
-            <p class="text-gray-500"><span class="inline-block bg-red-500 w-max px-4 h-6 flex justify-center items-center rounded-full font-bold text-white">✦ Admin</span></p>
-            <div class="w-96 h-8 bg-neutral-700 rounded-full">
-                <div class="w-32 h-full rounded-full bg-lime-600"></div>
+            <div class="flex gap-1">
+                <p class="text-gray-500"><span class="inline-block bg-red-500 w-max px-4 h-6 flex justify-center items-center rounded-full font-bold text-white">✦ Admin</span></p>
+                <p class="text-gray-500"><span class="inline-block bg-purple-600 w-max px-4 h-6 flex justify-center items-center rounded-full font-bold text-white">✦ Stoic Master</span></p>
+            </div>
+            <div class="relative w-96 h-8 bg-neutral-500 rounded-full">
+                <div class="h-full w-1/4 bg-lime-500 rounded-tl-full rounded-bl-full"></div>
+                @for ($i = 1; $i < 4; $i++)
+                    <div class="absolute w-0.5 h-8 bg-black bottom-0" style="left:{{25 * $i}}%"></div>
+                @endfor
             </div>
             
         </div>
