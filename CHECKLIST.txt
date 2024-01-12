@@ -8,4 +8,5 @@
 - Blogs or Posts have their own comments
 - Administrators are able to ban users
 - Administrators are able to delete other users' posts
+- Users are able to report posts and those reports can be seen by admins in orchid admin panel
 - Messaging system (if possible)
