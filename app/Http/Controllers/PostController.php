@@ -31,7 +31,12 @@ class PostController extends Controller
             'content' => ['required', 'min:5', 'max:3000']
         ]);
 
-        $data['user_id'] = $request->user()->id;
+        $user = $request->user();
+
+        $data['user_id'] = $user->id;
+
+        $user->xp = $user->xp + 100;
+        $user->save();
 
         $post = Post::create($data);
 

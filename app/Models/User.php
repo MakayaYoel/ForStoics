@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\RoleTrait;
+use App\Traits\RankTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
@@ -12,7 +12,7 @@ use Orchid\Platform\Models\User as Authenticatable;
 class User extends Authenticatable
 {
 
-    use RoleTrait;
+    use RankTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -76,5 +76,21 @@ class User extends Authenticatable
     // Returns a collection of all the users' posts (if accessed through its class proprety)
     public function posts() : HasMany {
         return $this->hasMany(Post::class, 'user_id', 'id');
+    }
+
+    // Returns the rank data of the player's rank
+    public function getRankData() : array {
+        $data = [];
+
+        foreach(array_reverse(self::RANKS) as $rank_name => $rank_data) {
+            if($this->xp >= $rank_data['min-xp']){
+                $data['rank_name'] = $rank_name;
+                $data['rank_color'] = $rank_data['color'];
+
+                break;
+            }
+        }
+
+        return $data;
     }
 }

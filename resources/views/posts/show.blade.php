@@ -7,7 +7,7 @@
             <p class="text-white flex gap-2">
                 Created By: 
                 <span class="inline-block h-6 w-6 rounded-full border-2">
-                    <a href=""><img
+                    <a href="#"><img
                         class="h-full w-full rounded-full"
                         src="{{$post->user->profile_picture ? asset('storage/' . $post->user->profile_picture) : asset('website_images/default-profile-picture.png')}}" 
                         alt="User Profile Picture"

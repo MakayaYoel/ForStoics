@@ -21,7 +21,8 @@ class UserController extends Controller{
     // Redirects to the manage profile page
     public function manage_profile(Request $request) {
         return view('user.manage_profile', [
-            'user' => auth()->user()
+            'user' => auth()->user(),
+            'rank_data' => auth()->user()->getRankData()
         ]);
     }
 
@@ -85,14 +86,16 @@ class UserController extends Controller{
             'profile_picture' => ['mimes:jpeg,png', 'max:5120']
         ]);
 
+        // Delete old profile picture from storage (if it exists)
         if($request->user()->profile_picture){
             Storage::disk('public')->delete($request->user()->profile_picture);
         }            
 
+        // Set new profile picture dir
         $data['profile_picture'] = $request->hasFile('profile_picture') ? $request->file('profile_picture')->store('profile_pictures', 'public') : null;
 
         $request->user()->update($data);
 
-        return redirect('/user/manage-profile');
+        return redirect('/user/manage-profile')->with('flash-message', 'Successfully changed your profile picture.');
     }
 }
