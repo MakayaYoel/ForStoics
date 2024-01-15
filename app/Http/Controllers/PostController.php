@@ -40,7 +40,7 @@ class PostController extends Controller
 
         $post = Post::create($data);
 
-        return redirect("/posts/{$post->id}");
+        return redirect("/posts/{$post->id}")->with('flash-message', 'Created post.');
     }
 
     /**
@@ -75,7 +75,7 @@ class PostController extends Controller
 
         $post->update($data);
 
-        return redirect("/posts/{$post->id}");
+        return redirect("/posts/{$post->id}")->with('flash-message', 'Successfully updated post!');
     }
 
     /**

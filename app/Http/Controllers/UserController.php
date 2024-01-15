@@ -59,7 +59,7 @@ class UserController extends Controller{
         if(auth()->attempt($data)) {
             $request->session()->regenerate();
 
-            return redirect('/');
+            return redirect('/')->with('flash-message', 'Successfully logged in.');
         }
 
         /* 
@@ -77,7 +77,7 @@ class UserController extends Controller{
         session()->invalidate();
         session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('flash-message', 'Successfully logged out.');
     }
 
     // Changes the user's profile picture
