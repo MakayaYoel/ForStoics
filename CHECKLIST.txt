@@ -10,4 +10,4 @@
 - Administrators are able to delete other users' posts
 - Users are able to report posts and those reports can be seen by admins in orchid admin panel
 - Messaging system (if possible)
-- Add flash messages for users' CRUD actions.
+- Add flash messages for users' CRUD actions. [JAN 15th, DONE]
