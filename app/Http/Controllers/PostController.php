@@ -35,6 +35,7 @@ class PostController extends Controller
 
         $data['user_id'] = $user->id;
 
+        // Add 100xp to the user's account for creating a post.
         $user->xp = $user->xp + 100;
         $user->save();
 
@@ -57,6 +58,7 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Post $post){
+        // Stop user's from editing other's posts.
         if(auth()->user()->id !== $post->user->id) abort(403, 'Unauthorized Action');
 
         return view('posts.edit', [
