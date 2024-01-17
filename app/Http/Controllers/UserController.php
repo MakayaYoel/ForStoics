@@ -32,7 +32,7 @@ class UserController extends Controller{
             'name' => ['required', 'unique:users', 'min:3', 'max:25'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:8', 'max:24'],
-            'profile_picture' => ['mimes:jpeg,png', 'max:5120']
+            'profile_picture' => ['mimes:jpeg,png', 'max:5120'] // only accept jpegs and pngs and files <= 5MB
         ]);
 
         $data['password'] = bcrypt($data['password']);
@@ -83,16 +83,16 @@ class UserController extends Controller{
     // Changes the user's profile picture
     public function changeProfilePicture(Request $request) {
         $data = $request->validate([
-            'profile_picture' => ['mimes:jpeg,png', 'max:5120']
+            'profile_picture' => ['mimes:jpeg,png', 'max:5120'] // only accept jpegs and pngs and files <= 5MB
         ]);
 
-        // Delete old profile picture from storage (if it exists)
+        // Delete old profile picture from storage (if there is one)
         if($request->user()->profile_picture){
             Storage::disk('public')->delete($request->user()->profile_picture);
         }            
 
         // Set new profile picture dir
-        $data['profile_picture'] = $request->hasFile('profile_picture') ? $request->file('profile_picture')->store('profile_pictures', 'public') : null;
+        $data['profile_picture'] = $request->hasFile('profile_picture') ? $request->file('profile_picture')->store('profile_pictures', 'public') : null; // if they didn't upload a new image, we upload null.
 
         $request->user()->update($data);
 
