@@ -20,9 +20,23 @@ class UserController extends Controller{
 
     // Redirects to the manage profile page
     public function manage_profile(Request $request) {
-        return view('user.manage_profile', [
+        return view('user.profile', [
             'user' => auth()->user(),
             'rank_data' => auth()->user()->getRankData()
+        ]);
+    }
+
+    public function show(User $user) {
+        return view('user.profile', [
+            'user' => $user,
+            'rank_data' => $user->getRankData()
+        ]);
+    }
+
+    public function showPosts(User $user) {
+        return view('user.posts', [
+            'user' => $user,
+            'posts' => $user->posts
         ]);
     }
 

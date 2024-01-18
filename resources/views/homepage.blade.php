@@ -10,7 +10,7 @@
         <div class="main__text-section self-center mr-32 mb-16 flex flex-col">
             <h1 class="text-white text-8xl tracking-wider">For Stoics</h1>
             <p class="text-gray-500 text-center text-xl">Your average blog/social site about stoicism.</p>
-            <button class="border-solid border-2 text-white p-2 w-1/2 rounded self-center mt-4 hover:bg-neutral-700">Join the community</button>
+            <a class="block w-1/2 self-center" href="@auth/posts @else/register @endauth"><button class="border-solid border-2 text-white p-2 w-full rounded mt-4 hover:bg-neutral-700">@auth Access the Community @else Join the Community @endauth</button></a>
         </div>
     </div>
 @endsection

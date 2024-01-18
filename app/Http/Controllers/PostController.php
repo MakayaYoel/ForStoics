@@ -41,7 +41,7 @@ class PostController extends Controller
 
         $post = Post::create($data);
 
-        return redirect("/posts/{$post->id}")->with('flash-message', 'Created post.');
+        return redirect("/posts/{$post->id}")->with('flash-message', 'Created post (+100 XP).');
     }
 
     /**

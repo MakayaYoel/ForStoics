@@ -10,13 +10,14 @@
     <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
     <script src="{{asset('website_js/app.js')}}"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://kit.fontawesome.com/c646f5869b.js" crossorigin="anonymous"></script>
 </head>
 <body class="h-screen bg-zinc-800">
     <x-flash-message />
 
     @include('partials._navigation_bar')
 
-    <main class='h-screen'>
+    <main>
         @yield('content')
     </main>
 

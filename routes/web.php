@@ -43,3 +43,5 @@ Route::middleware(RedirectIfAuthenticated::class)->group(function() {
 
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post}', [PostController::class, 'show']);
+Route::get('/user/{user}', [UserController::class, 'show']);
+Route::get('/user/{user}/posts', [UserController::class, 'showPosts']);
