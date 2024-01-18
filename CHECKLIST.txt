@@ -4,7 +4,7 @@
 - Users are able to edit and delete their posts [JAN 2nd, DONE]
 - Ranking/XP system [JAN 12th, DONE]
 - Main blog page, has sections such as (top blogs of the month, recent blogs, etc.)
-- Blogs or Posts have their own view, like, dislike count
+- Blogs or Posts have their own like count [JAN 18TH, DONE]
 - Blogs or Posts have their own comments
 - Administrators are able to ban users
 - Administrators are able to delete other users' posts

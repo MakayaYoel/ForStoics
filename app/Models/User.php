@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Interfaces\Likeable;
+use App\Models\Like as LikeModel;
 use App\Traits\RankTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Filters\Types\Like;
@@ -73,9 +75,47 @@ class User extends Authenticatable
         'created_at',
     ];
 
-    // Returns a collection of all the users' posts (if accessed through its class proprety)
+    // Define a one to many relationship between Users and Posts.
     public function posts() : HasMany {
         return $this->hasMany(Post::class, 'user_id', 'id');
+    }
+
+    // Define a one to many relationship between Users and Likes.
+    public function likes() : HasMany {
+        return $this->hasMany(LikeModel::class, 'user_id', 'id');
+    }
+
+    // User likes a model
+    public function like(Likeable $likeable) : bool {
+        if($this->hasLiked($likeable)) return false;
+
+        (new LikeModel())
+            ->user()->associate($this) // Set the user id
+            ->likeable()->associate($likeable) // Set the model id
+            ->save(); // save
+
+        return true;
+    }
+
+    // User unlikes a model
+    public function unlike(Likeable $likeable) : bool {
+        if(!$this->hasLiked($likeable)) return false;
+
+        $likeable->likes()
+            ->whereHas('user', fn($query) => $query->whereId($this->id)) // Find whether the user liked the likeable
+            ->delete(); // Delete the record/unlike the likeable
+
+        return true;
+    }
+
+    // Checks whether the user has liked a model
+    public function hasLiked(Likeable $likeable) : bool {
+        // Check if the model actually exists.
+        if(!$likeable->exists) return false;
+
+        return $likeable->likes()
+            ->whereHas('user', fn($query) => $query->whereId($this->id))
+            ->exists();
     }
 
     // Returns the rank data of the player's rank
@@ -92,5 +132,20 @@ class User extends Authenticatable
         }
 
         return $data;
+    }
+
+    // Get the user's next rank data
+    public function getNextRankData() : ?array {
+        $currentRank = $this->getRankData()['rank_name'];
+
+        $array = array_keys(self::RANKS);
+
+        $index = array_search($currentRank, $array) + 1;
+
+        $nextRank = $array[$index] ?? 0;
+
+        $result = isset(self::RANKS[$nextRank]) ? array_merge(["index" => $index], self::RANKS[$nextRank]) : null;
+
+        return $result;
     }
 }

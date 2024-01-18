@@ -12,19 +12,19 @@ trait RankTrait {
             'color' => "#737373"
         ],
         "Disciple" => [
-            'min-xp' => 1000,
+            'min-xp' => 500,
             'color' => "#F59E0B"
         ],
         "Adept" => [
-            'min-xp' => 3000,
+            'min-xp' => 1000,
             'color' => "#84CC16"
         ],
         "Sage" => [
-            'min-xp' => 5000,
+            'min-xp' => 2000,
             'color' => "#14B8A6"
         ],
         "Stoic Master" => [
-            'min-xp' => 10000,
+            'min-xp' => 3000,
             'color' => "#A855F7"
         ],
     ];

@@ -31,6 +31,7 @@ Route::middleware(Authenticate::class)->group(function() {
     Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
     Route::put('/posts/{post}', [PostController::class, 'update']);
     Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+    Route::post('/posts/{post}/like', [PostController::class, 'attemptLike']);
 });
 
 Route::middleware(RedirectIfAuthenticated::class)->group(function() {

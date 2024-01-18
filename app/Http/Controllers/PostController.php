@@ -88,4 +88,18 @@ class PostController extends Controller
 
         return redirect('/');
     }
+
+    // Attempt a like (or unlike) from a user
+    public function attemptLike(Request $request, Post $post) {
+        /** @var User $user */
+        $user = auth()->user();
+
+        if(!$user->hasLiked($post)) {
+            $user->like($post);
+        } else {
+            $user->unlike($post);
+        }
+
+        return redirect()->back();
+    }
 }

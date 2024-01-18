@@ -21,18 +21,15 @@
                     <div class="flex gap-4">
                         <form action="/posts/{{$post->id}}/like" method="POST">
                             @csrf
-                            <button type="submit"><i class="fa-solid fa-thumbs-up"></i></button>
-                            {{$post->likes}}
-                        </form>
-                        <form action="/posts/{{$post->id}}/dislike" method="POST">
-                            @csrf
-                            <button type="submit"><i class="fa-solid fa-thumbs-down"></i></button>
-                            {{$post->dislikes}}
+                            <span class="@if(auth()->check() && auth()->user()->hasLiked($post)) text-amber-400 @endif">
+                                <button type="submit"><i class="fa-solid fa-thumbs-up"></i></button>
+                                {{count($post->likes)}}
+                            </span>
                         </form>
                     </div>
                     
                     <!-- If they're the owner of the blog page !-->
-                    @if (auth()->user()->id == $post->user->id)
+                    @if (auth()->check() && auth()->user()->id == $post->user->id)
                         <a href="/posts/{{$post->id}}/edit"><i class='bx bxs-edit text-xl'></i></a>
                         <form action="/posts/{{$post->id}}" method="POST">
                             @csrf

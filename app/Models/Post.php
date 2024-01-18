@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
+use App\Interfaces\Likeable;
+use App\Traits\Likes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Post extends Model
-{
-    use HasFactory;
+class Post extends Model implements Likeable{
+    use HasFactory, Likes;
 
     protected $fillable = [
         'title',
