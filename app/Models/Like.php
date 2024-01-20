@@ -16,7 +16,7 @@ class Like extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    // Get who 'owns' the like, Post or User
+    // Get who 'owns' the like, Post
     public function likeable() : MorphTo{
         return $this->morphTo();
     }
