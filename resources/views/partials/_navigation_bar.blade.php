@@ -13,8 +13,10 @@
 
         @auth
             <div class="w-1/3 flex justify-center gap-4 self-center">
-                <div class="border-2 rounded-full h-12 w-12 overflow-hidden">
+                <a href="/posts/create" class="inline-block flex items-center justify-center"><button class="mr-4 h-12 p-2 border-solid border-2 rounded text-xl hover:bg-neutral-700">New post</button></a>
 
+                <div class="border-2 rounded-full h-12 w-12 overflow-hidden">
+                    
                     <a href="/user/manage-profile">
                         <img
                             class="h-full w-full rounded-full"

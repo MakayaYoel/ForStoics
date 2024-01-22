@@ -9,7 +9,7 @@
                 @foreach ($user->posts->sortByDesc('updated_at') as $post)
                     <div class="w-64 h-64 border-2 border-black rounded-lg">
                         <a href="/posts/{{$post->id}}">
-                            <img class="border-b-2 border-black rounded-lg rounded-b-none" src="{{asset('website_images/no-photo-available.png')}}" alt="No Photo Available">
+                            <img class="w-full border-b-2 border-black rounded-lg rounded-b-none" style="height:191.8px" src="{{$post->cover_image ? asset('storage/' . $post->cover_image) : asset('website_images/no-photo-available.png')}}" alt="No Photo Available">
                         </a>
                         
                         <div class="flex flex-col justify-center items-center">

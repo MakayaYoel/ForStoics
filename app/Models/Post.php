@@ -15,7 +15,8 @@ class Post extends Model implements Likeable{
     protected $fillable = [
         'title',
         'content',
-        'user_id'
+        'user_id',
+        'cover_image'
     ];
 
     // Gets the user that the post belongs to.

@@ -4,7 +4,7 @@
     <div class="h-screen flex justify-center">
         <div class="self-center h-4/6 w-1/4 flex flex-col mb-12">
             <h1 class="text-center text-white font-bold text-3xl mt-4">Create Blog Post</h1>
-            <form action="/posts" method="POST" class="flex flex-col self-center w-full font-serif mt-6">
+            <form action="/posts" method="POST" class="flex flex-col self-center w-full font-serif mt-6" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-6">
@@ -20,6 +20,14 @@
                     <label for="content" class="text-white text-2xl">Post Content:</label>
                     <textarea class="whitespace-pre-wrap w-full" name="content" id="content" rows="10">{{old('content')}}</textarea>
                     @error('content')
+                        <p class='text-red-400'>{{$message}}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-6">
+                    <label class="text-white text-xl" for="cover_image">Upload a blog cover image (optional):</label>
+                    <input class="text-white" type="file" name="cover_image" id="cover_image">
+                    @error('cover_image')
                         <p class='text-red-400'>{{$message}}</p>
                     @enderror
                 </div>

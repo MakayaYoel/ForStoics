@@ -1,9 +1,10 @@
 @extends('layout')
 
 @section('content')
-    <div class="h-screen">
-        <div class="w-full h-48 flex flex-col pt-4 px-48 font-serif">
+    <div class="min-h-screen max-h-content mb-8">
+        <div class="w-full flex flex-col pt-4 px-48 font-serif">
             <h1 class="text-center text-white text-5xl mb-4 font-semibold">{{$post->title}}</h1>
+            <img src="{{$post->cover_image ? asset('storage/' . $post->cover_image) : asset('website_images/no-photo-available.png')}}"  alt="" class="w-1/3 self-center mb-4">
             <div class="mb-4 flex justify-between items-center">
                 <p class="text-white flex gap-2">
                     Created By: 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -28,8 +29,13 @@ class PostController extends Controller
     public function store(Request $request) {
         $data = $request->validate([
             'title' => ['required', 'min:5', 'max:24'],
-            'content' => ['required', 'min:5', 'max:3000']
+            'content' => ['required', 'min:5', 'max:3000'],
+            'cover_image' => ['mimes:jpeg,png', 'max:5120'] // Only accept images that are JPEGs or PNGs and <= 5MB
         ]);
+
+        if($request->hasFile('cover_image')){
+            $data['cover_image'] = $request->file('cover_image')->store('blog_covers', 'public');
+        }
 
         $user = $request->user();
 
@@ -72,8 +78,15 @@ class PostController extends Controller
     public function update(Request $request, Post $post){
         $data = $request->validate([
             'title' => ['required', 'min:5', 'max:24'],
-            'content' => ['required', 'min:5', 'max:3000'] 
+            'content' => ['required', 'min:5', 'max:3000'],
+            'cover_image' => ['mimes:jpeg,png', 'max:5120']
         ]);
+
+        if($post->cover_image){
+            Storage::disk('public')->delete($post->cover_image);
+        }
+
+        $data['cover_image'] = $request->hasFile('cover_image') ? $request->file('cover_image')->store('blog_covers', 'public') : null;
 
         $post->update($data);
 
