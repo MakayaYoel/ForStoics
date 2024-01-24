@@ -53,15 +53,7 @@
             <div class="w-full h-2/3 flex flex-wrap gap-4 justify-center items-center">
                 @if(count($user->posts) == 0) <h1 class="font-bold text-white text-4xl">There are no posts.</h1> @endif
                 @foreach ($user->posts->sortByDesc('updated_at')->take(5) as $post)
-                    <div class="w-64 h-64 border-2 border-black rounded-lg">
-                        <a href="/posts/{{$post->id}}">
-                            <img class="w-full border-b-2 border-black rounded-lg rounded-b-none" style="height:191.8px" src="{{$post->cover_image ? asset('storage/' . $post->cover_image) : asset('website_images/no-photo-available.png')}}" alt="No Photo Available">
-                        </a>
-                        
-                        <div class="flex flex-1 justify-center items-center">
-                            <a href="/posts/{{$post->id}}"><h1 class="text-white text-center font-bold text-xl">{{$post->title}}</h1></a>
-                        </div>
-                    </div>
+                    <x-blog-box :id="$post->id" />
                 @endforeach
             </div>
             <div class="w-full flex justify-center items-center">

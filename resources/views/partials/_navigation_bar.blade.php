@@ -6,7 +6,6 @@
             <ul class="flex gap-8">
                 <li><a href="/">Home</a></li>
                 <li><a href="/posts">Blogs</a></li>
-                <li><a href="#">Feeds</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </div>
