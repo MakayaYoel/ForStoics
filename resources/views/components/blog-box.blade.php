@@ -8,6 +8,7 @@
     </a>
     
     <div class="flex flex-col justify-center items-center">
-        <a href="/posts/{{$id}}"><h1 class="text-white text-center font-bold text-xl">{{$post->title}}</h1></a>
+        <a href="/posts/{{$id}}"><h1 class="text-white text-center font-bold text-lg">{{$post->title}}</h1></a>
+        <x-created-by :author="$post->user->id" />
     </div>
 </div>

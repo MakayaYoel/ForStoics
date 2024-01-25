@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Usamamuneerchaudhary\Commentify\Traits\Commentable;
 
 class Post extends Model implements Likeable{
     use HasFactory, Likes;

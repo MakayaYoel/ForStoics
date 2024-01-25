@@ -6,17 +6,10 @@
             <h1 class="text-center text-white text-5xl mb-4 font-semibold">{{$post->title}}</h1>
             <img src="{{$post->cover_image ? asset('storage/' . $post->cover_image) : null}}"  alt="" class="w-1/3 self-center mb-4">
             <div class="mb-4 flex justify-between items-center">
-                <p class="text-white flex gap-2">
-                    Created By: 
-                    <span class="inline-block h-6 w-6 rounded-full border-2">
-                        <a href="/user/{{$post->user->id}}"><img
-                            class="h-full w-full rounded-full"
-                            src="{{$post->user->profile_picture ? asset('storage/' . $post->user->profile_picture) : asset('website_images/default-profile-picture.png')}}" 
-                            alt="User Profile Picture"
-                            >
-                        </a>
-                    </span> <a class="font-bold" href="/user/{{$post->user->id}}">{{$post->user->name}}</a>
-                </p>
+                @php
+                    $userid = $post->user->id;
+                @endphp
+                <x-created-by :author="$userid" />
     
                 <div class="text-white flex gap-4">
                     <div class="flex gap-4">

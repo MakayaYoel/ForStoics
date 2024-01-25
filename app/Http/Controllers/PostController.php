@@ -101,7 +101,7 @@ class PostController extends Controller
     public function destroy(Post $post){
         $post->delete();
 
-        return redirect('/');
+        return redirect('/')->with('flash-message', 'Successfully deleted post!');
     }
 
     // Attempt a like (or unlike) from a user
@@ -109,12 +109,15 @@ class PostController extends Controller
         /** @var User $user */
         $user = auth()->user();
 
+        $liked = false;
+
         if(!$user->hasLiked($post)) {
             $user->like($post);
+            $liked = true;
         } else {
             $user->unlike($post);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('flash-message', ($liked ? 'Successfully Liked Post!' : 'Successfully Unliked Post!'));
     }
 }
