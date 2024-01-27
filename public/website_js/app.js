@@ -29,3 +29,17 @@ function editProfilePictureModal_onUpload(){
     let edit_pfp_form_uploaded_image = new SimpleImage(edit_pfp_file_input); 
     edit_pfp_form_uploaded_image.drawTo(edit_pfp_canvas);
 };
+
+// Opens the report modal
+function openReportModal() {
+    let modal = document.getElementById("report_modal");
+
+    modal.classList.remove('hidden');
+}
+
+// Closes the report modal
+function closeReportModal() {
+    let modal = document.getElementById("report_modal");
+
+    modal.classList.add('hidden');
+}

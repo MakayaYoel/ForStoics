@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Constants;
+namespace App\Enums;
 
 enum Report:int {
 
     // Report Types
-    const SPAM = 0;
-    const INAPPROPRIATE = 1;
-    const BULLYING = 2;
+    case SPAM = 0;
+    case INAPPROPRIATE = 1;
+    case BULLYING = 2;
 
+    // Returns a report types' title.
     public function title() : string {
         return match($this) {
             Report::SPAM => "Spam",

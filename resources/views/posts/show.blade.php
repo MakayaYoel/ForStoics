@@ -13,7 +13,7 @@
     
                 <div class="text-white flex gap-4">
                     <div class="flex gap-4">
-                        <form action="/posts/{{$post->id}}/like" method="POST">
+                        <form action="/posts/{{$post->id}}/like" method="POST" class="relative bottom-0.5">
                             @csrf
                             <span class="@if(auth()->check() && auth()->user()->hasLiked($post)) text-amber-400 @endif">
                                 <button type="submit"><i class="fa-solid fa-thumbs-up"></i></button>
@@ -21,6 +21,8 @@
                             </span>
                         </form>
                     </div>
+
+                    <button onclick="openReportModal()"><i class='bx bxs-flag text-xl'></i></button>
                     
                     <!-- If they're the owner of the blog page !-->
                     @if (auth()->check() && auth()->user()->id == $post->user->id)
@@ -45,4 +47,5 @@
             </div>
         </div>
     </div>
+    @include('posts.modal.report_modal')
 @endsection

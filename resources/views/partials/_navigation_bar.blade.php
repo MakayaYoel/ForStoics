@@ -7,6 +7,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/posts">Blogs</a></li>
                 <li><a href="#">Contact</a></li>
+                <li>@include('partials._search')</li>
             </ul>
         </div>
 

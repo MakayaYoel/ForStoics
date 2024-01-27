@@ -19,10 +19,7 @@
             <div class="self-center flex flex-col gap-2">
                 <h1 class="text-white text-4xl font-semibold">{{$user->name}}</h1>
                 <div class="flex gap-1">
-                    <!-- <p class="text-gray-500"><span class="inline-block bg-red-500 w-max px-4 h-6 flex justify-center items-center rounded-full font-bold text-white">✦ Admin</span></p> !-->
-                    <p class="text-gray-500"><span class="inline-block w-max px-4 h-6 flex justify-center items-center rounded-full font-bold text-white" style="background-color: {{$rank_data["rank_color"]}}">
-                        ✦ {{$rank_data['rank_name']}}
-                    </span></p>
+                    <x-rank-tag :user="$user" :rankData="$user->getRankData()" />
                 </div>
                 <div class="relative w-96 h-8 bg-neutral-500 border-2 border-black">
                     @php

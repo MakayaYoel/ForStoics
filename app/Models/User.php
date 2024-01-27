@@ -10,11 +10,14 @@ use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Platform\Models\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
+use Orchid\Screen\AsSource;
+use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable
 {
 
-    use RankTrait;
+    use RankTrait, AsSource;
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +28,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'profile_picture'
+        'profile_picture',
+        'permissions'
     ];
 
     /**
@@ -147,5 +151,16 @@ class User extends Authenticatable
         $result = isset(self::RANKS[$nextRank]) ? array_merge(["index" => $index], self::RANKS[$nextRank]) : null;
 
         return $result;
+    }
+
+    public static function createAdmin(string $name, string $email, string $password): void{
+        throw_if(static::where('email', $email)->exists(), 'User already exists');
+
+        static::create([
+            'name'        => $name,
+            'email'       => $email,
+            'password'    => Hash::make($password),
+            'permissions' => Dashboard::getAllowAllPermission(),
+        ]);
     }
 }
