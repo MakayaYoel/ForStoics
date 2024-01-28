@@ -10,7 +10,9 @@ use Orchid\Screen\TD;
 use App\Models\Report;
 use App\Models\User;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Group;
+use Orchid\Support\Facades\Alert;
 
 class ReportListScreen extends Screen
 {
@@ -68,21 +70,19 @@ class ReportListScreen extends Screen
                     TD::make('post_id', 'Post:')
                         ->render(function(Report $report){
                             return Button::make('Redirect To Post (' . Post::find($report->post_id)->title . ')')
-                            ->method('goToPost', ['post' => Post::find($report->post_id)->id]);
+                            ->method('goToPost', ['post' => $report->post_id]);
                         }),
 
                     TD::make('user_id', "User:")
                         ->render(function(Report $report){
                             return Button::make('Redirect To User (' . User::find($report->user_id)->name . ')')
-                                ->method('goToUser', ['user' => User::find($report->user_id)->id]);
+                                ->method('goToUser', ['user' => $report->user_id]);
                         }),
 
-                    TD::make('Actions:')
+                    TD::make('Go To Actions')
                         ->render(function(Report $report){
-                            return Group::make([
-                                Button::make('Delete Report')
-                                    ->method('deleteReport', ['report' => $report->id])
-                            ]);
+                            return Link::make('Go To Actions')
+                                ->route('reports.actions', $report);
                         }),
                     
                     TD::make('additional_comment', 'Additional Comment:')->width('100px'),
@@ -100,6 +100,17 @@ class ReportListScreen extends Screen
 
     public function deleteReport(Report $report) {
         $report->delete();
+
+        Alert::success('Successfully deleted report post!');
+
+        return back();
+    }
+
+    // Deletes a selected post
+    public function deletePost(Post $post) {
+        $post->delete();
+
+        Alert::success('Successfully deleted post!');
 
         return back();
     }

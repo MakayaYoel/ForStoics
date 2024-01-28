@@ -11,13 +11,14 @@ use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Platform\Models\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
+use Mchev\Banhammer\Traits\Bannable;
 use Orchid\Screen\AsSource;
 use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable
 {
 
-    use RankTrait, AsSource;
+    use RankTrait, AsSource, Bannable;
 
     /**
      * The attributes that are mass assignable.

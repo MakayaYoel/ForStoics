@@ -27,12 +27,14 @@
                     <!-- If they're the owner of the blog page !-->
                     @if (auth()->check() && auth()->user()->id == $post->user->id)
                         <a href="/posts/{{$post->id}}/edit"><i class='bx bxs-edit text-xl'></i></a>
-                        <form action="/posts/{{$post->id}}" method="POST">
-                            @csrf
-                            @method('DELETE')
+                        @if (true)
+                            <form action="/posts/{{$post->id}}" method="POST">
+                                @csrf
+                                @method('DELETE')
 
-                            <button><a href="/posts/{{$post->id}}"><i class='bx bx-trash text-xl'></i></a></button>
-                        </form>
+                                <button><a href="/posts/{{$post->id}}"><i class='bx bx-trash text-xl'></i></a></button>
+                            </form>
+                        @endif
                     @endif
                 </div>
     

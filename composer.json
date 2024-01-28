@@ -11,6 +11,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.4",
+        "mchev/banhammer": "^2.1",
         "orchid/platform": "^14.17"
     },
     "require-dev": {

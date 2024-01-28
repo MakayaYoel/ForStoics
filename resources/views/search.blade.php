@@ -6,7 +6,7 @@
             @if(count($users) !== 0)
                 <div class="flex flex-col justify-center items-center gap-4">
                     <h1 class="text-white font-bold text-4xl">Users</h1>
-                    <div class="px-32 flex justify-center flex-wrap gap-8">
+                    <div class="px-32 py-4 flex justify-center flex-wrap gap-8">
                         @foreach ($users as $user)
                             <x-user-box :user="$user" />
                         @endforeach

@@ -12,12 +12,14 @@ use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\ReportActionScreen;
 use App\Orchid\Screens\ReportListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
+use App\Orchid\Screens\WebsiteUsersScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -37,6 +39,9 @@ Route::screen('/main', PlatformScreen::class)
     ->name('platform.main');
 
 Route::screen('/reports', ReportListScreen::class)->name('reports.list');
+Route::screen('/reports/{report}/actions', ReportActionScreen::class)->name('reports.actions');
+
+Route::screen('/website_users', WebsiteUsersScreen::class)->name('users.list');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

@@ -31,7 +31,7 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-        // Check whether the user has posted more than 5 posts in the past 24 hours
+        // Check whether the user has posted more than 3 posts in the past 24 hours
         if(count(
                 $request->user()->posts->where('created_at', '>=', Carbon::now()->subDays(1)->toDateTimeString())
         ) + 1 > 999) {

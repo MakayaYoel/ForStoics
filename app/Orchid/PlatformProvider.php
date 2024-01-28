@@ -38,6 +38,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.book')
                 ->title('Reports')
                 ->route('reports.list'),
+            Menu::make('Users')
+                ->icon('people')
+                ->title('Users')
+                ->route('users.list')
         ];
     }
 

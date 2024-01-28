@@ -15,9 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $posts = Post::factory(10)->create([
-            'user_id' => 1
-        ]);
+        User::factory(75)->create();
 
 
     }
