@@ -117,7 +117,7 @@ class ReportActionScreen extends Screen
 
         Alert::success('Successfully deleted report!');
         
-        return back();
+        return to_route('reports.list');
     }
 
     public function deleteReportAndPost() {

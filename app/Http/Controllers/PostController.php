@@ -34,7 +34,7 @@ class PostController extends Controller
         // Check whether the user has posted more than 3 posts in the past 24 hours
         if(count(
                 $request->user()->posts->where('created_at', '>=', Carbon::now()->subDays(1)->toDateTimeString())
-        ) + 1 > 999) {
+        ) + 1 > 3) {
             return back()->with('flash-message', 'You can only post 3 posts every 24 hours.');
         }
 

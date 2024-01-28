@@ -24,17 +24,15 @@
 
                     <button onclick="openReportModal()"><i class='bx bxs-flag text-xl'></i></button>
                     
-                    <!-- If they're the owner of the blog page !-->
-                    @if (auth()->check() && auth()->user()->id == $post->user->id)
+                    <!-- If they're the owner of the blog page or an admin !-->
+                    @if (auth()->check() && auth()->user()->id == $post->user->id || auth()->user()->hasAccess('platform.*'))
                         <a href="/posts/{{$post->id}}/edit"><i class='bx bxs-edit text-xl'></i></a>
-                        @if (true)
                             <form action="/posts/{{$post->id}}" method="POST">
                                 @csrf
                                 @method('DELETE')
 
                                 <button><a href="/posts/{{$post->id}}"><i class='bx bx-trash text-xl'></i></a></button>
                             </form>
-                        @endif
                     @endif
                 </div>
     

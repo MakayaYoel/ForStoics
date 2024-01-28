@@ -119,4 +119,12 @@ class WebsiteUsersScreen extends Screen
         return back();
 
     }
+
+    public function deleteUser(User $user) {
+        $user->delete();
+
+        Alert::success('Successfully deleted user!');
+
+        return back();
+    }
 }
