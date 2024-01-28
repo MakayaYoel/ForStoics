@@ -23,7 +23,7 @@ Route::middleware(['auth.banned'])->group(function () {
 
     Route::middleware(Authenticate::class)->group(function() {
         Route::get('/logout', [UserController::class, 'logout']);
-        Route::get('/user/magnage-profile', [UserController::class, 'manage_profile']);
+        Route::get('/user/manage-profile', [UserController::class, 'manage_profile']);
         Route::put('/user/manage-profile/profile-picture', [UserController::class, "changeProfilePicture"]);
 
         Route::get('/posts/create', [PostController::class, 'create']);
